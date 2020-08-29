@@ -41,8 +41,8 @@ class HelloWorld(toga.App):
             style=Pack(padding=5)
         )
 
-        main_box.add(name_box)
         main_box.add(hello_box)
+        main_box.add(name_box)
         main_box.add(button)
 
         self.main_window = toga.MainWindow(title=self.formal_name)
