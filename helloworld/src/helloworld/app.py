@@ -6,6 +6,7 @@ from toga.style import Pack
 from toga.style.pack import COLUMN, ROW
 
 
+
 class HelloWorld(toga.App):
 
     def startup(self):
@@ -17,13 +18,19 @@ class HelloWorld(toga.App):
         show the main window.
         """
         main_box = toga.Box(style=Pack(direction=COLUMN))
+        self.hello_label = toga.Label(
+            'hi! ',
+            style=Pack(padding=(0, 5))
+        )
 
         name_label = toga.Label(
-            'Your name: ',
+            'Your text: ',
             style=Pack(padding=(0, 5))
         )
         self.name_input = toga.TextInput(style=Pack(flex=1))
 
+        self.hello_box = toga.Box()
+        self.hello_box.add(self.hello_label)
 
         name_box = toga.Box(style=Pack(direction=ROW, padding=5))
         name_box.add(name_label)
@@ -35,6 +42,7 @@ class HelloWorld(toga.App):
             style=Pack(padding=5)
         )
 
+        main_box.add(self.hello_box)
         main_box.add(name_box)
         main_box.add(button)
 
@@ -44,6 +52,7 @@ class HelloWorld(toga.App):
 
     def say_hello(self, widget):
         print("Hello", self.name_input.value)
+        self.hello_label.text = "Hello {}!".format(self.name_input.value)
 
 def main():
     return HelloWorld()
