@@ -17,13 +17,19 @@ class HelloWorld(toga.App):
         show the main window.
         """
         main_box = toga.Box(style=Pack(direction=COLUMN))
+        hello_label = toga.Label(
+            'hi! ',
+            style=Pack(padding=(0, 5))
+        )
 
         name_label = toga.Label(
-            'Your name: ',
+            'Your text: ',
             style=Pack(padding=(0, 5))
         )
         self.name_input = toga.TextInput(style=Pack(flex=1))
 
+        hello_box = toga.Box()
+        hello_box.add(hello_label)
 
         name_box = toga.Box(style=Pack(direction=ROW, padding=5))
         name_box.add(name_label)
@@ -36,6 +42,7 @@ class HelloWorld(toga.App):
         )
 
         main_box.add(name_box)
+        main_box.add(hello_box)
         main_box.add(button)
 
         self.main_window = toga.MainWindow(title=self.formal_name)
